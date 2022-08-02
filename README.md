@@ -12,5 +12,4 @@
 	-c is the align result path of child MSAs, a TXT file
 	-o is the output file, a FASTA file
 	-h print help message
-  
 ```
