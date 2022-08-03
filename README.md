@@ -1,12 +1,11 @@
 # dpEnsemble
-
+The program is written in C++20 and works on Linux.
 ## Download and Compile
 ```
 git clone https://github.com/malabz/dpEnsemble.git
 cd dpEnsemble
 make
 ```
-
 ## Usage
 ### Command-line and options
 ```
@@ -17,6 +16,5 @@ make
 	-o is the output file, a FASTA file
 	-h print help message
 ```
-
 ## Contacts
 If any bugs during you run our code, please email to zhai1xiao@gmail.com
