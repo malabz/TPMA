@@ -29,10 +29,26 @@ make
 2. Run dpEnsemble.
 ```
 # Download data
-wget 
-# 
+wget https://github.com/malabz/dpEnsemble/raw/main/data/16s_rRNA.zip
+
+# Unzip data
+unzip 16s_rRNA.zip
+
+# Make a filepath.txt
+cd 16s_rRNA/align_result/16s_rRNA_100_1.fasta
+pwd # get the PATH
+vim filepath.txt
+# Save the following to filepath.txt
+PATH/16s_rRNA_100_1.fasta_clustalw2.fasta
+PATH/16s_rRNA_100_1.fasta_dialignt.fasta
+PATH/16s_rRNA_100_1.fasta_mafft.fasta
+PATH/16s_rRNA_100_1.fasta_muscle.fasta
+PATH/16s_rRNA_100_1.fasta_pcma.fasta
+PATH/16s_rRNA_100_1.fasta_poa.fasta
+PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
+
 # Run dpEnsemble
-./dpEnsemble -r <raw_data> -c <child_msa_alignment> -o <output> 
+./dpEnsemble -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
 ```
 
 ## Reminder
