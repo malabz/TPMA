@@ -1,5 +1,5 @@
 # dpEnsemble
-The program is written in C++20 and works on Linux.
+dpEnsemble is a tool for combine multiple sequence alignment. It is based on double pointer. The program is written in C++20 and works on Linux.
 ## Download and Compile
 ```
 git clone https://github.com/malabz/dpEnsemble.git
