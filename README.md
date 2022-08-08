@@ -25,7 +25,7 @@ make
 ```
 
 ### 1.3 Example usage for the source code
-1. Download test data.
+1. Download [test data](https://github.com/malabz/dpEnsemble/tree/main/data).
 2. Run dpEnsemble.
 ```
 # Download data
@@ -33,11 +33,10 @@ wget
 # 
 # Run dpEnsemble
 ./dpEnsemble -r <raw_data> -c <child_msa_alignment> -o <output> 
-
 ```
 
 ## Test Dataset and Enviroment
-1. Test Dataset
+1. Test [Dataset]https://github.com/malabz/dpEnsemble/tree/main/data)
 
 Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
