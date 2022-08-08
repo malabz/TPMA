@@ -38,11 +38,14 @@ wget
 
 ## Test Dataset and Enviroment
 1. Test Dataset
+
 Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
 23s simu|100|about 3900bp|
 16s rRNA|100|about 1500bp|100 sequences were randomly selected from 16s rRNA small dataset, 8 times
+
 2. Test Enviroment
+ 
 System|OSX|Linux|WSL
 :---:|:---:|:---:|:---:
 GCC version|clang 13.0.0|GCC 9.4.0|GCC 9.4.0
