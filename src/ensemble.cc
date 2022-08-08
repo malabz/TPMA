@@ -168,13 +168,13 @@ static void preprocess()
 
 inline void display_help(const char* prog) {
 	printf("dpEnsemble v1.0, by Yixiao Zhai, August 2022.\n");
-	printf("Usage: %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
-	printf("\t\t -r is the raw data, a FASTA file\n");
-	printf("\t\t -c is the align result path of child MSAs, a TXT file\n");
-	printf("\t\t -o is the output file, a FASTA file\n");
-	printf("\t\t -h print help message\n");
+	printf("Usage:\n %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
+	printf("\t -r is the raw data, a FASTA file\n");
+	printf("\t -c is the align result path of child MSAs, a TXT file\n");
+	printf("\t -o is the output file, a FASTA file\n");
+	printf("\t -h print help message\n");
 
-	printf("Example:\n\t\t");
+	printf("Example:\n\t");
 	printf("./dpEnsemble -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
 }
 
