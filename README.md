@@ -46,9 +46,11 @@ Dataset|Count|Avg Length|Intro
 
 2. Test Enviroment
  
-System|OSX|Linux|WSL
-:---:|:---:|:---:|:---:
-GCC version|clang 13.0.0|GCC 9.4.0|GCC 9.4.0
+System|GCC version
+:---:|:---:
+OSX|clang 13.0.0
+Linux|GCC 9.4.0
+WSL|GCC 9.4.0
 
 ## Contacts
 If any bugs during you run our code, please email to zhai1xiao@gmail.com
