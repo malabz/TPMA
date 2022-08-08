@@ -27,7 +27,7 @@ make
 ### 1.3 Example usage for the source code
 1. Download [test data](https://github.com/malabz/dpEnsemble/tree/main/data).
 2. Run dpEnsemble.
-```
+```shell
 # Download data
 wget https://github.com/malabz/dpEnsemble/raw/main/data/16s_rRNA.zip
 
@@ -50,7 +50,6 @@ PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
 # Run dpEnsemble
 ./dpEnsemble -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
 ```
-
 ## Reminder
 1. Currently dpEnsemble is only available for DNA/RNA. 
 2. The premise of applying dpEnsemble is that the sequences' id in the child MSAs are unique.
