@@ -21,9 +21,9 @@ make
 	-o is the output file, a FASTA file
 	-h print help message
 ```
-## Test Env
+## Test Environment
 System|OSX|Linux|WSL
-:---:|:---:|:---:
+:---:|:---:|:---:|:---:
 GCC version|clang 13.0.0|GCC 9.4.0|GCC 9.4.0
 ## Contacts
 If any bugs during you run our code, please email to zhai1xiao@gmail.com
