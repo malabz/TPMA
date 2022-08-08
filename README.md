@@ -40,7 +40,6 @@ wget
 Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
 23s simu|100|about 3900bp|
-:---:|:---:|:---:|:---:
 16s rRNA|100|about 1500bp|100 sequences were randomly selected from 16s rRNA small dataset, 8 times
 
 ## Test Environment
