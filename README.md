@@ -37,7 +37,7 @@ wget
 
 ## Reminder
 1. Currently dpEnsemble is only available for DNA/RNA. 
-2. The premise of applying dpEnsemble is that the sequences'id in the child MSAs are unique.
+2. The premise of applying dpEnsemble is that the sequences' id in the child MSAs are unique.
 (E.g. The id length of the sequences in the original data set is too long, Clustalw2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and dpEnsemble cannot process it)
 3. dpEnsemble will delete the illegal characters, when they are exsited.
 
