@@ -63,6 +63,7 @@ Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
 23s simu|100|about 3900bp|A sets of Mycobacterium 23S rRNA like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
 16s rRNA|100|about 1500bp|100 sequences were randomly selected from 16s rRNA small dataset, 8 times
+mt1x|30|about 16600bp| There are no illegal characters in the "processed" file
 
 2. Test Enviroment
  
