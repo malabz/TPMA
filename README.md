@@ -1,6 +1,6 @@
-# dpEnsemble
+# dpEnsemble: a tool for refining multiple sequences alignment.
 
-dpEnsemble is a tool for combine multiple sequence alignment. It is based on double pointer. The program is written in C++20 and works on Linux.
+dpEnsemble is a tool for ensembling and refining from different MSA results. It is based on double pointer. The program is written in C++20 and works on Linux.
 
 ## Installation and Usage
 
