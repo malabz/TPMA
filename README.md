@@ -2,6 +2,11 @@
 
 dpEnsemble is a tool for ensembling and refining from different MSA results. It is based on double pointer. The program is written in C++20 and works on Linux.
 
+[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/version.svg)](https://anaconda.org/malab/dp_ensemble)
+[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/platforms.svg)](https://anaconda.org/malab/dp_ensemble)
+[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/license.svg)](https://anaconda.org/malab/dp_ensemble)
+[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/installer/conda.svg)](https://conda.anaconda.org/malab)
+
 ## Installation and Usage
 
 ### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
