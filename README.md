@@ -9,17 +9,38 @@ dpEnsemble is a tool for ensembling and refining from different MSA results. It 
 
 ## Installation and Usage
 
-### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
+### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - using anaconda
+1.Intall WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
 
-1. Intall WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
-2. Download and Compile source code. (Make sure your the version of gcc >= 9.4.0 or clang >= 13.0.0)
+2.Download and install Anaconda. Download Anaconda versions for different systems from [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
+
+3.Install dpEnsemble.
+```bash
+#1 Acvtivate one of you conda environment
+conda activate base
+
+#2 Add channels to conda
+conda config --add channels conda-forge
+conda config --add channels bioconda
+conda config --add channels malab
+
+#3 Install dpEnsemble
+conda install -c malab dp_ensemble
+
+#4 Test dpEnsemble
+dpEnsemble -h
+```
+
+### 2.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
+
+1. Download and Compile source code. (Make sure your the version of gcc >= 9.4.0 or clang >= 13.0.0)
 ```shell
 git clone https://github.com/malabz/dpEnsemble.git
 cd dpEnsemble
 make
 ```
 
-### 1.2 Usage for the source code
+### 2.2 Usage for the source code
 ```
 ./dpEnsemble -r <raw_data> -c <child_msa_alignment> -o <output> 
 
@@ -29,7 +50,7 @@ make
 	-h print help message
 ```
 
-### 1.3 Example usage for the source code
+### 2.3 Example usage for the source code
 1. Download [test data](https://github.com/malabz/dpEnsemble/tree/main/data).
 2. Run dpEnsemble.
 ```shell
