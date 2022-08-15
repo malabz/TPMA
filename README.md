@@ -55,7 +55,7 @@ make
 2. Run dpEnsemble.
 ```shell
 # Download data
-wget https://github.com/malabz/dpEnsemble/raw/main/data/16s_rRNA.zip
+wget https://github.com/malabz/dpEnsemble/blob/main/data/16s_rRNA.zip
 
 # Unzip data
 unzip 16s_rRNA.zip
