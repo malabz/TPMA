@@ -20,8 +20,6 @@ dpEnsemble is a tool for ensembling and refining from different MSA results. It 
 conda activate base
 
 #2 Add channels to conda
-conda config --add channels conda-forge
-conda config --add channels bioconda
 conda config --add channels malab
 
 #3 Install dpEnsemble
