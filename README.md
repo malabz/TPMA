@@ -53,10 +53,10 @@ make
 2. Run dpEnsemble.
 ```shell
 # Download data
-wget https://github.com/malabz/dpEnsemble/blob/main/data/16s_rRNA.zip
+wget https://github.com/malabz/dpEnsemble/blob/main/data/16s_rRNA.tar.gz
 
 # Unzip data
-unzip 16s_rRNA.zip
+tar -zxvf 16s_rRNA.tar.gz
 
 # Make a filepath.txt
 cd 16s_rRNA/align_result/16s_rRNA_100_1.fasta
