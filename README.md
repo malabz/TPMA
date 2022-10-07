@@ -1,6 +1,6 @@
-# dpEnsemble: a tool for refining multiple sequences alignment.
+# DPRA: A slight tool for betterment the accuracy of the alignment with uniting multiple sequence alignment.
 
-dpEnsemble is a tool for ensembling and refining from different MSA results. It is based on double pointer. The program is written in C++20 and works on Linux.
+DPRA is a tool for ensembling and refining from different MSA results. It is based on double pointer. The program is written in C++20 and works on Linux.
 
 [![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/version.svg)](https://anaconda.org/malab/dp_ensemble)
 [![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/platforms.svg)](https://anaconda.org/malab/dp_ensemble)
@@ -14,7 +14,7 @@ dpEnsemble is a tool for ensembling and refining from different MSA results. It 
 
 2.Download and install Anaconda. Download Anaconda versions for different systems from [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
 
-3.Install dpEnsemble.
+3.Install dpra.
 ```bash
 #1 Acvtivate one of you conda environment
 conda activate base
@@ -23,7 +23,7 @@ conda activate base
 conda config --add channels malab
 
 #3 Install dpEnsemble
-conda install -c malab dp_ensemble
+conda install -c malab dpra
 
 #4 Test dpEnsemble
 dpEnsemble -h
@@ -33,14 +33,14 @@ dpEnsemble -h
 
 1. Download and Compile source code. (Make sure your the version of gcc >= 9.4.0 or clang >= 13.0.0)
 ```shell
-git clone https://github.com/malabz/dpEnsemble.git
-cd dpEnsemble
+git clone https://github.com/malabz/DPRA.git
+cd DPRA
 make
 ```
 
 ### 2.2 Usage for the source code
 ```
-./dpEnsemble -r <raw_data> -c <child_msa_alignment> -o <output> 
+./DPRA -r <raw_data> -c <child_msa_alignment> -o <output> 
 
 	-r is the raw data, a FASTA file
 	-c is the align result path of child MSAs, a TXT file
@@ -49,11 +49,11 @@ make
 ```
 
 ### 2.3 Example usage for the source code
-1. Download [test data](https://github.com/malabz/dpEnsemble/tree/main/data).
-2. Run dpEnsemble.
+1. Download [test data](https://github.com/malabz/DPRA/tree/main/data).
+2. Run DPRA.
 ```shell
 # Download data
-wget https://github.com/malabz/dpEnsemble/blob/main/data/16s_rRNA.tar.gz
+wget https://github.com/malabz/DPRA/blob/main/data/16s_rRNA.tar.gz
 
 # Unzip data
 tar -zxvf 16s_rRNA.tar.gz
@@ -72,16 +72,16 @@ PATH/16s_rRNA_100_1.fasta_poa.fasta
 PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
 
 # Run dpEnsemble
-./dpEnsemble -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
+./DPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
 ```
 ## Reminder
-1. Currently dpEnsemble is only available for DNA/RNA. 
+1. Currently DPRA is only available for DNA/RNA. 
 2. The premise of applying dpEnsemble is that the sequences' id in the child MSAs are unique.
 (E.g. The id length of the sequences in the original data set is too long, Clustalw2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and dpEnsemble cannot process it)
-3. dpEnsemble will delete the illegal characters, when they are exsited.
+3. DPRA will delete the illegal characters, when they are exsited.
 
 ## Test Dataset and Enviroment
-1. Test [Dataset](https://github.com/malabz/dpEnsemble/tree/main/data)
+1. Test [Dataset](https://github.com/malabz/DPRA/tree/main/data)
 
 Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
