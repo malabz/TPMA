@@ -167,15 +167,15 @@ static void preprocess()
 }
 
 inline void display_help(const char* prog) {
-	printf("dpEnsemble v1.0, by Yixiao Zhai, August 2022.\n");
-	printf("Usage:\n %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
-	printf("\t -r is the raw data, a FASTA file\n");
-	printf("\t -c is the align result path of child MSAs, a TXT file\n");
-	printf("\t -o is the output file, a FASTA file\n");
-	printf("\t -h print help message\n");
+	printf("DPRA v1.0, by Yixiao Zhai, August 2022.\n");
+	printf("Usage: %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
+	printf("\t\t -r is the raw data, a FASTA file\n");
+	printf("\t\t -c is the align result path of child MSAs, a TXT file\n");
+	printf("\t\t -o is the output file, a FASTA file\n");
+	printf("\t\t -h print help message\n");
 
-	printf("Example:\n\t");
-	printf("./dpEnsemble -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
+	printf("Example:\n\t\t");
+	printf("./DPRA -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
@@ -200,7 +200,7 @@ inline void get_pars(int argc, char* argv[]) {
 				display_help(argv[0]);
 				exit(0);
 			case '?':
-				std::cerr << "Error parameters.\n Please run 'dpEnsemble -h'\n";
+				std::cerr << "Error parameters.\n Please run 'DPRA -h'\n";
 				exit(1);
 				break;
 		}
@@ -392,7 +392,7 @@ static void merge_core(std::vector<utils::Fasta> fasta_set, std::string result_n
     }
 }
 
-static void align(std::string raw_data_path, std::string file_set, std::string result_name)
+static void refine(std::string raw_data_path, std::string file_set, std::string result_name)
 {   
     std::vector<utils::Fasta> fasta_set;
 
@@ -403,6 +403,7 @@ static void align(std::string raw_data_path, std::string file_set, std::string r
     startTime = clock();
 
     utils::Fasta raw_data = read_from(raw_data_path);
+    std::cout <<  "Finished loading raw data..." << std::endl;
     std::string each_line;
     int flag = 0;
     int processed = 0;
@@ -449,6 +450,7 @@ static void align(std::string raw_data_path, std::string file_set, std::string r
         processed += 1;
     }
     endTime = clock();
+    std::cout << "Check data ... done!" << std::endl;
     std::cout << "Check data time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
     
     merge_core(fasta_set, result_name);
@@ -469,7 +471,7 @@ int main(int argc, char **argv)
 
     clock_t startTime,endTime;
     startTime = clock();
-    align(raw_data, child_msa, output);
+    refine(raw_data, child_msa, output);
     endTime = clock();
     std::cout << "Total time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
     std::cout << "Memory usage: " << getPeakRSS() << " B." << std::endl;
