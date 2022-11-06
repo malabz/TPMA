@@ -167,7 +167,7 @@ static void preprocess()
 }
 
 inline void display_help(const char* prog) {
-	printf("DPRA v1.0, by Yixiao Zhai, August 2022.\n");
+	printf("TPRA v1.0, by Yixiao Zhai, August 2022.\n");
 	printf("Usage: %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
 	printf("\t\t -r is the raw data, a FASTA file\n");
 	printf("\t\t -c is the align result path of child MSAs, a TXT file\n");
@@ -175,7 +175,7 @@ inline void display_help(const char* prog) {
 	printf("\t\t -h print help message\n");
 
 	printf("Example:\n\t\t");
-	printf("./DPRA -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
+	printf("./TPRA -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
@@ -200,7 +200,7 @@ inline void get_pars(int argc, char* argv[]) {
 				display_help(argv[0]);
 				exit(0);
 			case '?':
-				std::cerr << "Error parameters.\n Please run 'DPRA -h'\n";
+				std::cerr << "Error parameters.\n Please run 'TPRA -h'\n";
 				exit(1);
 				break;
 		}
