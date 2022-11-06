@@ -1,5 +1,5 @@
 cc = g++
-prom = DPRA
+prom = TPRA
 source = src/ensemble.cc src/Fasta.cc
 
 $(prom): $(source)
