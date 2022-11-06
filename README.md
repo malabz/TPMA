@@ -2,11 +2,6 @@
 
 TPRA is a tool for ensembling and refining from different MSA results. It is based on two pointer. The program is written in C++20 and works on Linux.
 
-[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/version.svg)](https://anaconda.org/malab/dp_ensemble)
-[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/platforms.svg)](https://anaconda.org/malab/dp_ensemble)
-[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/license.svg)](https://anaconda.org/malab/dp_ensemble)
-[![Anaconda-Server Badge](https://anaconda.org/malab/dp_ensemble/badges/installer/conda.svg)](https://conda.anaconda.org/malab)
-
 ## Installation and Usage
 
 ### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - using anaconda
@@ -14,7 +9,7 @@ TPRA is a tool for ensembling and refining from different MSA results. It is bas
 
 2.Download and install Anaconda. Download Anaconda versions for different systems from [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
 
-3.Install dpra.
+3.Install TPRA.
 ```bash
 #1 Acvtivate one of you conda environment
 conda activate base
@@ -22,11 +17,11 @@ conda activate base
 #2 Add channels to conda
 conda config --add channels malab
 
-#3 Install dpEnsemble
-conda install -c malab dpra
+#3 Install TPRA
+conda install -c malab tpra
 
-#4 Test dpEnsemble
-dpEnsemble -h
+#4 Test TPRA
+TPRA -h
 ```
 
 ### 2.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
@@ -71,13 +66,13 @@ PATH/16s_rRNA_100_1.fasta_pcma.fasta
 PATH/16s_rRNA_100_1.fasta_poa.fasta
 PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
 
-# Run dpEnsemble
+# Run TPRA
 ./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
 ```
 ## Reminder
 1. Currently TPRA is only available for DNA/RNA. 
-2. The premise of applying dpEnsemble is that the sequences' id in the child MSAs are unique.
-(E.g. The id length of the sequences in the original data set is too long, Clustalw2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and dpEnsemble cannot process it)
+2. The premise of applying TPRA is that the sequences' id in the child MSAs are unique.
+(E.g. The id length of the sequences in the original data set is too long, Clustalw2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and TPRA cannot process it)
 3. TPRA will delete the illegal characters, when they are exsited.
 
 ## Test Dataset and Enviroment
