@@ -2,7 +2,7 @@
 
 TPRA is a tool for ensembling and refining from different MSA results. It is based on two pointer. The program is written in C++20 and works on Linux.
 
-## Installation and Usage
+## 🔨Installation and Usage
 
 ### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - using anaconda
 1.Intall WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
@@ -75,7 +75,7 @@ PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
 (E.g. The id length of the sequences in the original data set is too long, ClustalW2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and TPRA cannot process it)
 3. TPRA will delete the illegal characters, when they are exsited.
 
-## Test Dataset and Enviroment
+## 🧬Test Dataset and Enviroment
 1. Test [Dataset](https://github.com/malabz/TPRA/tree/main/data)
 
 Dataset|Count|Avg Length|Intro
@@ -94,5 +94,5 @@ OSX|clang 13.0.0
 Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
-## Contacts
+## 👋Contacts
 If any bugs during you run our code, please email to zhai1xiao@gmail.com
