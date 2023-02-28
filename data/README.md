@@ -1,4 +1,4 @@
-# 📚The test datasets of TPRA
+# 🔬The test datasets of TPRA
 ### 23s_simu.tar.gz
  - Data source: A sets of Mycobacterium 23S rRNA like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
  - raw_data: same with the data source.
