@@ -35,10 +35,10 @@ make
 
 ### 2.2 Usage for the source code
 ```
-./TPRA -r <raw_data> -c <child_msa_alignment> -o <output> 
+./TPRA -r <raw_data> -c <msa_alignment> -o <output> 
 
 	-r is the raw data, a FASTA file
-	-c is the align result path of child MSAs, a TXT file
+	-c is the align result path of the MSAs, a TXT file
 	-o is the output file, a FASTA file
 	-h print help message
 ```
@@ -48,7 +48,7 @@ make
 2. Run TPRA.
 ```shell
 # Download data
-wget https://github.com/malabz/TPRA/blob/main/data/16s_rRNA.tar.gz
+wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
 
 # Unzip data
 tar -zxvf 16s_rRNA.tar.gz
@@ -58,20 +58,21 @@ cd 16s_rRNA/align_result/16s_rRNA_100_1.fasta
 pwd # get the PATH
 vim filepath.txt
 # Save the following to filepath.txt
-PATH/16s_rRNA_100_1.fasta_clustalw2.fasta
-PATH/16s_rRNA_100_1.fasta_dialignt.fasta
+PATH/16s_rRNA_100_1.fasta_clustalw2.aln.fasta
+PATH/16s_rRNA_100_1.fasta_dialigntx.fasta
 PATH/16s_rRNA_100_1.fasta_mafft.fasta
-PATH/16s_rRNA_100_1.fasta_muscle.fasta
-PATH/16s_rRNA_100_1.fasta_pcma.fasta
-PATH/16s_rRNA_100_1.fasta_poa.fasta
-PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
+PATH/16s_rRNA_100_1.fasta_muscle3.fasta
+PATH/16s_rRNA_100_1.fasta_muscle5.fasta
+PATH/16s_rRNA_100_1.fasta_pcma.aln.fasta
+PATH/16s_rRNA_100_1.fasta_poa.aln.fasta
+PATH/16s_rRNA_100_1.fasta_tcoffee.aln.fasta
 
 # Run TPRA
-./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_ensemble.fasta 
+./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_TPRA.fasta 
 ```
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
-2. The premise of applying TPRA is that the sequences' id in the child MSAs are unique.
+2. The premise of applying TPRA is that the sequences' id in the MSAs are unique.
 (E.g. The id length of the sequences in the original data set is too long, ClustalW2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and TPRA cannot process it)
 3. TPRA will delete the illegal characters, when they are exsited.
 
@@ -96,4 +97,4 @@ Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
 ## 👋Contacts
-If any bugs during you run our code, please email to zhai1xiao@gmail.com
+If any bugs during you run our code, please email to [📩](zhai1xiao@gmail.com)
