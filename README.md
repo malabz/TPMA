@@ -97,4 +97,4 @@ Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
 ## 👋Contacts
-If any bugs during you run our code, please email to [📩](zhai1xiao@gmail.com)
+If any bugs during you run our code, please email to 👉[📩](zhai1xiao@gmail.com)
