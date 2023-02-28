@@ -81,10 +81,11 @@ PATH/16s_rRNA_100_1.fasta_tcoffee.fasta
 Dataset|Count|Avg Length|Intro
 :---:|:---:|:---:|:---:
 23s simu|100|about 3900bp|A sets of Mycobacterium 23S rRNA like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
+mt like|100|about 16600bp|A sets of human mitochondria genomes like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
 16s rRNA|100|about 1500bp|100 sequences were randomly selected from 16s rRNA small dataset, 8 times
 mt1x|30|about 16600bp|There are no illegal characters in the "processed" file
-2019nCoV_20200301|156|about 29000bp|COVID-19 sequences with high similarity
-SARS_CoV_20200417|100|spotty|100 sequences were randomly selected from [SARS_Cov_2020417](http://lab.malab.cn/~cjt/MSA/data/SARS-CoV-2_20200417.7z), 4 times
+SARS-CoV-2_20200301|156|about 29000bp|COVID-19 sequences with high similarity
+SARS-CoV-2_20200417|100|spotty|100 sequences were randomly selected from [SARS_Cov_2020417](http://lab.malab.cn/~cjt/MSA/data/SARS-CoV-2_20200417.7z), 4 times
 
 2. Test Enviroment
 
