@@ -1,4 +1,4 @@
-# A refinement tool for ensembling different multiple sequence alignment results
+# TPRA: A refinement tool for ensembling different multiple sequence alignment results
 
 TPRA is a tool for ensembling and refining from different MSA results. It is based on two pointer. The program is written in C++20 and works on Linux.
 
