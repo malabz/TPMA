@@ -72,9 +72,9 @@ PATH/16s_rRNA_100_1.fasta_tcoffee.aln.fasta
 ```
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
-2. The premise of applying TPRA is that the sequences' id in the MSAs are unique.
-(E.g. The id length of the sequences in the original data set is too long, ClustalW2 will intercept the id, which may cause the id in the alignment result to be completely consistent, and TPRA cannot process it)
-3. TPRA will delete the illegal characters, when they are exsited.
+2. The application of TPRA assumes that the sequences' IDs within the MSAs are unique.
+(E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software.)
+3. TPRA will remove any illegal characters that are present in the input data.
 
 ## 🧬Test Dataset and Enviroment
 1. Test [Dataset](https://github.com/malabz/TPRA/tree/main/data)
@@ -97,4 +97,4 @@ Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
 ## 👋Contacts
-If any bugs during you run our code, please email to 👉[📩](zhai1xiao@gmail.com)
+If you encounter any bugs while running our code, please email us at 👉[📩](zhai1xiao@gmail.com)
