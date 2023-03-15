@@ -1,6 +1,20 @@
-cc = g++
-prom = TPRA
-source = src/ensemble.cc src/Fasta.cc
+# Define compiler and compile options
+CXX=g++
+CXXFLAGS=-std=c++20 -O2 -Wall
 
-$(prom): $(source)
-	$(cc) -std=c++2a -O2 -o $(prom) $(source)
+# Define targets and dependencies
+TARGET=TPRA
+SRCS=src/ensemble.cc src/Fasta.cc
+OBJS=$(SRCS:.cc=.o)
+
+# Link object files
+$(TARGET): $(OBJS)
+	$(CXX) $(OBJS) -o $(TARGET)
+
+# Compile the source code
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean
+clean:
+	rm -f $(TARGET) $(OBJS)
