@@ -5,7 +5,7 @@
 #include <cstring>
 #include <regex>
 #include <getopt.h>
-
+#include <filesystem>
 #include "Fasta.hh"
 
 #if defined(_WIN32)
@@ -167,28 +167,28 @@ static void preprocess()
 }
 
 inline void display_help(const char* prog) {
-	printf("TPRA v1.0, by Yixiao Zhai, August 2022.\n");
-	printf("Usage: %s -r <raw_data> -c <child_msa_alignment> -o <output> \n", prog);
-	printf("\t\t -r is the raw data, a FASTA file\n");
-	printf("\t\t -c is the align result path of child MSAs, a TXT file\n");
-	printf("\t\t -o is the output file, a FASTA file\n");
-	printf("\t\t -h print help message\n");
+	printf("TPRA v1.0, by Yixiao Zhai, March 2023.\n");
+	printf("Usage: %s -r <raw_data> -a <folder_for_initial_alignments> -o <output> \n", prog);
+	printf("\t -r is used to specify the raw data, a file in FASTA format\n");
+	printf("\t -a is used to specify the folder containing the initial alignments, the absolute path to the folder\n");
+	printf("\t -o is used to specify the output file for TPRA result, a file in FASTA format\n");
+	printf("\t -h print help message\n");
 
-	printf("Example:\n\t\t");
-	printf("./TPRA -r H.fasta -c H_filepath.txt -o H_ensemble.fasta\n\n");
+	printf("Example:\n\t");
+	printf("./TPRA -r H.fasta -a path_of_folder/ -o H_ensemble.fasta\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
 	v1logger = &std::cout;
 	bool is1 = false, is2 = false, is3 = false;
 	int oc;
-	while ((oc = getopt(argc, argv, "r:c:o:hf")) >= 0) {
+	while ((oc = getopt(argc, argv, "r:a:o:hf")) >= 0) {
 		switch (oc) {
 			case 'r':
 				raw_data = optarg;
 				is1 = true;
 				break;
-			case 'c':
+			case 'a':
 				child_msa = optarg;
 				is2 = true;
 				break;
@@ -200,7 +200,7 @@ inline void get_pars(int argc, char* argv[]) {
 				display_help(argv[0]);
 				exit(0);
 			case '?':
-				std::cerr << "Error parameters.\n Please run 'TPRA -h'\n";
+				std::cerr << "Error parameters.\n Please run './TPRA -h'\n";
 				exit(1);
 				break;
 		}
@@ -222,7 +222,7 @@ inline void get_pars(int argc, char* argv[]) {
 
 	f.open(child_msa);
 	if (f.fail()) {
-		fprintf(stderr, "Child MSA filepath '%s' does not exist.\n", child_msa.c_str());
+		fprintf(stderr, "The folder containing the initial alignments '%s' does not exist.\n", child_msa.c_str());
 		exit(1);
 	}
 	f.close();
@@ -392,8 +392,18 @@ static void merge_core(std::vector<utils::Fasta> fasta_set, std::string result_n
     }
 }
 
-static void refine(std::string raw_data_path, std::string file_set, std::string result_name)
+static void refine(std::string raw_data_path, std::string path, std::string result_name)
 {   
+    std::string file_set="test.txt";
+    std::ofstream fw(file_set, std::ofstream::out);
+    if(fw.is_open()){
+        for (const auto & entry : std::filesystem::directory_iterator(path)){
+            fw << entry.path().string() << "\n";
+        }
+        fw.close();
+    } else {
+        std::cerr << "Error opening file." << std::endl;
+    }
     std::vector<utils::Fasta> fasta_set;
 
     std::ifstream file(file_set);
@@ -457,6 +467,9 @@ static void refine(std::string raw_data_path, std::string file_set, std::string 
     
     merge_endTime = clock();
     std::cout << "Ensemble time: " <<(double)(merge_endTime - endTime)/CLOCKS_PER_SEC << " s." << std::endl;
+    if (std::remove(file_set.c_str())!=0) {
+        std::cerr << "Error deleting file." << std::endl;
+    }
     
 }
 
