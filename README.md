@@ -35,12 +35,11 @@ make
 
 ### 2.2 Usage for the source code
 ```
-./TPRA -r <raw_data> -c <msa_alignment> -o <output> 
-
-	-r is the raw data, a FASTA file
-	-c is the align result path of the MSAs, a TXT file
-	-o is the output file, a FASTA file
-	-h print help message
+Usage: ./TPRA -r <raw_data> -a <folder_for_initial_alignments> -o <output>
+         -r is used to specify the raw data, a file in FASTA format
+         -a is used to specify the folder containing the initial alignments, the absolute path to the folder
+         -o is used to specify the output file for TPRA result, a file in FASTA format
+         -h print help message
 ```
 
 ### 2.3 Example usage for the source code
@@ -53,22 +52,12 @@ wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
 # Unzip data
 tar -zxvf 16s_rRNA.tar.gz
 
-# Make a filepath.txt
-cd 16s_rRNA/align_result/16s_rRNA_100_1.fasta
+# Get the folder path
+cd 16s_rRNA/align_result/16s_rRNA_100_1
 pwd # get the PATH
-vim filepath.txt
-# Save the following to filepath.txt
-PATH/16s_rRNA_100_1.fasta_clustalw2.aln.fasta
-PATH/16s_rRNA_100_1.fasta_dialigntx.fasta
-PATH/16s_rRNA_100_1.fasta_mafft.fasta
-PATH/16s_rRNA_100_1.fasta_muscle3.fasta
-PATH/16s_rRNA_100_1.fasta_muscle5.fasta
-PATH/16s_rRNA_100_1.fasta_pcma.aln.fasta
-PATH/16s_rRNA_100_1.fasta_poa.aln.fasta
-PATH/16s_rRNA_100_1.fasta_tcoffee.aln.fasta
 
 # Run TPRA
-./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c 16s_rRNA/align_result/16s_rRNA_100_1.fasta/filepath.txt -o 16s_rRNA_100_1_TPRA.fasta 
+./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c PATH/ -o 16s_rRNA_100_1_TPRA.fasta 
 ```
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
