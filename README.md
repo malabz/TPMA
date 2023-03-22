@@ -24,27 +24,45 @@ conda install -c malab tpra
 TPRA -h
 ```
 
-### 2.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
+### 1.2 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
 
 1. Download and Compile source code. (Make sure your the version of gcc >= 9.4.0 or clang >= 13.0.0)
 ```shell
+#1 Download
 git clone https://github.com/malabz/TPRA.git
+
+#2 Enter the folder
 cd TPRA
+
+#3 Compile
 make
+
+#4 Test TPRA
+./TPRA -h
 ```
 
-### 2.2 Usage for the source code
+### 2 Usage
 ```
-Usage: ./TPRA -r <raw_data> -a <folder_for_initial_alignments> -o <output>
-         -r is used to specify the raw data, a file in FASTA format
-         -a is used to specify the folder containing the initial alignments, the absolute path to the folder
-         -o is used to specify the output file for TPRA result, a file in FASTA format
-         -h print help message
+./TPRA -r <raw_data> -a <folder_for_initial_alignments> -o <output>
+   -r is used to specify the raw data, a file in FASTA format
+   -a is used to specify the folder containing the initial alignments, the absolute path to the folder
+   -o is used to specify the output file for TPRA result, a file in FASTA format
+   -h print help message
 ```
 
-### 2.3 Example usage for the source code
-1. Download [test data](https://github.com/malabz/TPRA/tree/main/data).
-2. Run TPRA.
+## 🔬Test datasets and an instance
+### 1. Information about the [test datasets](https://github.com/malabz/TPRA/tree/main/data)
+
+Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
+:---:|:---:|:---:|:---:|:---:
+23s simu|100|3|about 3900bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
+mt like|100|3|about 16600bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
+16s rRNA|100|8|about 1450bp|The average similarity is about 75%
+mt1x|30|4|about 16568bp|The average similarity is about 99.7%
+SARS-CoV-2_20200301|39|4|about 29860bp|The average similarity is about 99.8%
+SARS-CoV-2_20200417|100|4|about 27800bp|The average similarity is about 85%
+
+### 2. An instance
 ```shell
 # Download data
 wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
@@ -57,7 +75,7 @@ cd 16s_rRNA/align_result/16s_rRNA_100_1
 pwd # get the PATH
 
 # Run TPRA
-./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -c PATH/ -o 16s_rRNA_100_1_TPRA.fasta 
+./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -a PATH/ -o 16s_rRNA_100_1_TPRA.fasta 
 ```
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
@@ -65,20 +83,7 @@ pwd # get the PATH
 (E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software.)
 3. TPRA will remove any illegal characters that are present in the input data.
 
-## 🧬Test Dataset and Enviroment
-1. Test [Dataset](https://github.com/malabz/TPRA/tree/main/data)
-
-Dataset|Count|Avg Length|Intro
-:---:|:---:|:---:|:---:
-23s simu|100|about 3900bp|A sets of Mycobacterium 23S rRNA like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
-mt like|100|about 16600bp|A sets of human mitochondria genomes like was simulated using INDELible v1.03 (Fletcher and Yang 2009)
-16s rRNA|100|about 1500bp|100 sequences were randomly selected from 16s rRNA small dataset, 8 times
-mt1x|30|about 16600bp|There are no illegal characters in the "processed" file
-SARS-CoV-2_20200301|156|about 29000bp|COVID-19 sequences with high similarity
-SARS-CoV-2_20200417|100|spotty|100 sequences were randomly selected from [SARS_Cov_2020417](http://lab.malab.cn/~cjt/MSA/data/SARS-CoV-2_20200417.7z), 4 times
-
-2. Test Enviroment
-
+## 🖥️Enviroment
 System|GCC version
 :---:|:---:
 OSX|clang 13.0.0
