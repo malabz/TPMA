@@ -5,7 +5,7 @@ TPRA is a tool written in C++20 for combining and refining multiple MSA results 
 ## 🔨Installation and Usage
 
 ### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - using anaconda
-1.Intall WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
+1.Install WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
 
 2.Download and install Anaconda. Download Anaconda versions for different systems from [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
 
@@ -83,7 +83,7 @@ pwd # get the PATH
 (E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software.)
 3. TPRA will remove any illegal characters that are present in the input data.
 
-## 🖥️Enviroment
+## 🖥️Environment
 System|GCC version
 :---:|:---:
 OSX|clang 13.0.0
