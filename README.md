@@ -4,10 +4,10 @@ TPRA is a tool written in C++20 for combining and refining multiple MSA results 
 
 ## 🔨Installation and Usage
 
-### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - using anaconda
+### 1.1 OSX/Linux/WSL(Windows Subsystem for Linux ) - from Anaconda
 1.Install WSL for Windows. Instructional video [1](https://www.youtube.com/watch?v=X-DHaQLrBi8&t=5s) or [2](http://lab.malab.cn/%7Etfr/1.mp4) (Copyright belongs to the original work).
 
-2.Download and install Anaconda. Download Anaconda versions for different systems from [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
+2.Download and install Anaconda. Download Anaconda for different systems [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
 
 3.Install TPRA.
 ```bash
@@ -50,8 +50,8 @@ make
    -h print help message
 ```
 
-## 🔬Test datasets and an instance
-### 1. Information about the [test datasets](https://github.com/malabz/TPRA/tree/main/data)
+## 🔬Test dataset and a using case
+### 1. Information about the [test dataset](https://github.com/malabz/TPRA/tree/main/data)
 
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
@@ -62,7 +62,7 @@ mt1x|30|4|about 16568bp|The average similarity is about 99.7%
 SARS-CoV-2_20200301|39|4|about 29860bp|The average similarity is about 99.8%
 SARS-CoV-2_20200417|100|4|about 27800bp|The average similarity is about 85%
 
-### 2. An instance
+### 2. A using case
 ```shell
 # Download data
 wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
@@ -81,7 +81,7 @@ pwd # get the PATH
 1. Currently TPRA is only available for DNA/RNA. 
 2. The application of TPRA assumes that the sequences' IDs within the MSAs are unique.
 (E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software.)
-3. TPRA will remove any illegal characters that are present in the input data.
+3. TPRA will remove any bad characters that are present in the input data.
 
 ## 🖥️Environment
 System|GCC version
