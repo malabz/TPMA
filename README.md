@@ -11,7 +11,7 @@ TPRA is a tool written in C++20 for combining and refining multiple MSA results 
 
 3.Install TPRA.
 ```bash
-#1 Acvtivate one of you conda environment
+#1 Activate one of your conda environment
 conda activate base
 
 #2 Add channels to conda
@@ -26,12 +26,12 @@ TPRA -h
 
 ### 1.2 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
 
-1. Download and Compile source code. (Make sure your the version of gcc >= 9.4.0 or clang >= 13.0.0)
+1. Download and Compile the source code. (Make sure your version of gcc >= 9.4.0 or clang >= 13.0.0)
 ```shell
 #1 Download
 git clone https://github.com/malabz/TPRA.git
 
-#2 Enter the folder
+#2 Open the folder
 cd TPRA
 
 #3 Compile
@@ -50,7 +50,7 @@ make
    -h print help message
 ```
 
-## 🔬Test dataset and a using case
+## 🔬Test dataset and the use case
 ### 1. Information about the [test dataset](https://github.com/malabz/TPRA/tree/main/data)
 
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
@@ -62,7 +62,7 @@ mt1x|30|4|about 16568bp|The average similarity is about 99.7%
 SARS-CoV-2_20200301|39|4|about 29860bp|The average similarity is about 99.8%
 SARS-CoV-2_20200417|100|4|about 27800bp|The average similarity is about 85%
 
-### 2. A using case
+### 2. The use case
 ```shell
 # Download data
 wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
@@ -80,7 +80,7 @@ pwd # get the PATH
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
 2. The application of TPRA assumes that the sequences' IDs within the MSAs are unique.
-(E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software.)
+(E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software).
 3. TPRA will remove any bad characters that are present in the input data.
 
 ## 🖥️Environment
