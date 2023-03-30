@@ -168,14 +168,14 @@ static void preprocess()
 
 inline void display_help(const char* prog) {
 	printf("TPRA v1.0, by Yixiao Zhai, March 2023.\n");
-	printf("Usage: %s -r <raw_data> -a <folder_for_initial_alignments> -o <output> \n", prog);
-	printf("\t -r is used to specify the raw data, a file in FASTA format\n");
+	printf("Usage: %s -a <folder_for_initial_alignments> -r <raw_data> -o <output> \n", prog);
 	printf("\t -a is used to specify the folder containing the initial alignments, the absolute path to the folder\n");
+	printf("\t -r is used to specify the raw data, a file in FASTA format\n");
 	printf("\t -o is used to specify the output file for TPRA result, a file in FASTA format\n");
 	printf("\t -h print help message\n");
 
 	printf("Example:\n\t");
-	printf("./TPRA -r H.fasta -a path_of_folder/ -o H_ensemble.fasta\n\n");
+	printf("./tpra -a path_of_folder/ -r H.fasta -o H_ensemble.fasta\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
