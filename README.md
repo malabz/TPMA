@@ -57,7 +57,7 @@ Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
 23s simu|100|3|about 3900bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
 mt like|100|3|about 16600bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
-16s rRNA|100|8|about 1450bp|The average similarity is about 75%
+16s rRNA|100|8|about 1550bp|The average similarity is about 75%
 mt1x|30|4|about 16568bp|The average similarity is about 99.7%
 SARS-CoV-2_20200301|39|4|about 29860bp|The average similarity is about 99.8%
 SARS-CoV-2_20200417|100|4|about 27800bp|The average similarity is about 85%
