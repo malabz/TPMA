@@ -21,7 +21,7 @@ conda config --add channels malab
 conda install -c malab tpra
 
 #4 Test TPRA
-TPRA -h
+tpra -h
 ```
 
 ### 1.2 OSX/Linux/WSL(Windows Subsystem for Linux ) - from the source code
@@ -38,14 +38,14 @@ cd TPRA
 make
 
 #4 Test TPRA
-./TPRA -h
+./tpra -h
 ```
 
 ### 2 Usage
 ```
-./TPRA -r <raw_data> -a <folder_for_initial_alignments> -o <output>
-   -r is used to specify the raw data, a file in FASTA format
+./tpra -a <folder_for_initial_alignments> -r <raw_data> -o <output>
    -a is used to specify the folder containing the initial alignments, the absolute path to the folder
+   -r is used to specify the raw data, a file in FASTA format
    -o is used to specify the output file for TPRA result, a file in FASTA format
    -h print help message
 ```
@@ -75,7 +75,7 @@ cd 16s_rRNA/align_result/16s_rRNA_100_1
 pwd # get the PATH
 
 # Run TPRA
-./TPRA -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -a PATH/ -o 16s_rRNA_100_1_TPRA.fasta 
+./tpra -a PATH/ -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -o 16s_rRNA_100_1_tpra.fasta 
 ```
 ## 💡Reminder
 1. Currently TPRA is only available for DNA/RNA. 
