@@ -167,7 +167,7 @@ static void preprocess()
 }
 
 inline void display_help(const char* prog) {
-	printf("TPRA v1.0, by Yixiao Zhai, March 2023.\n");
+	printf("TPRA v1.0, by Yixiao Zhai, June 2023.\n");
 	printf("Usage: %s -a <folder_for_initial_alignments> -r <raw_data> -o <output> \n", prog);
 	printf("\t -a is used to specify the folder containing the initial alignments, the absolute path to the folder\n");
 	printf("\t -r is used to specify the raw data, a file in FASTA format\n");
@@ -234,6 +234,7 @@ inline void get_pars(int argc, char* argv[]) {
 	}
 	f_matches.close();
 }
+
 static void order(utils::Fasta &lhs, utils::Fasta const &rhs)
 {
     std::vector<std::string> new_sequences;
@@ -419,8 +420,16 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
     int processed = 0;
     std::regex regexp("[^a-zA-z]");
 
-    for (; std::getline(file, each_line); )
+    // Store fasta and sp score
+    std::vector<std::pair<utils::Fasta,long long>> sp_scores;
+    
+    // Check data begin
+    while(std::getline(file, each_line))
     {
+        // Skip the blank lines
+        if(each_line=="") continue;
+
+
         flag = 0;
         utils::Fasta fasta = read_from(each_line);
         std::vector<std::string> new_sequences;
@@ -453,12 +462,22 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
         fasta.sequences.assign(new_sequences.begin(), new_sequences.end());
         fasta.identifications.assign(raw_data.identifications.begin(), raw_data.identifications.end());
         new_sequences.clear();
+
         if(flag == 0)
         {
-            fasta_set.push_back(fasta);
+            long long sp_score = score(fasta, 0, fasta.sequences[0].size());
+            sp_scores.push_back(std::make_pair(fasta, sp_score));
+            // fasta_set.push_back(fasta);
         }
         processed += 1;
     }
+
+    // Order the files based on sp score
+    std::sort(sp_scores.begin(), sp_scores.end(), [](const auto& score1, const auto& score2) { return score1.second > score2.second; });
+    for (const auto& score : sp_scores){
+        fasta_set.push_back(score.first);
+    }
+
     endTime = clock();
     std::cout << "Check data ... done!" << std::endl;
     std::cout << "Check data time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;

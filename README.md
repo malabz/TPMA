@@ -44,7 +44,7 @@ make
 ### 2 Usage
 ```
 ./tpra -a <folder_for_initial_alignments> -r <raw_data> -o <output>
-   -a is used to specify the folder containing the initial alignments, the absolute path to the folder
+   -a is used to specify the folder containing the initial alignments, the path to the folder
    -r is used to specify the raw data, a file in FASTA format
    -o is used to specify the output file for TPRA result, a file in FASTA format
    -h print help message
@@ -55,9 +55,13 @@ make
 
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
+16s simu|100|3|about 1550bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
 23s simu|100|3|about 3900bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
-mt like|100|3|about 16600bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
-16s rRNA|100|8|about 1550bp|The average similarity is about 75%
+RNA-255|255|10|about 1550bp|The average similarity is about 80%
+RNA-511|511|10|about 1550bp|The average similarity is about 80%
+16S rRNA|100|8|about 1550bp|The average similarity is about 75%
+HVS-II|10|10|about 400bp|The average similarity is about 96%
+23S rRNA|64|10|about 3140bp|The average similarity is about 95%
 mt1x|30|4|about 16568bp|The average similarity is about 99.7%
 SARS-CoV-2_20200301|39|4|about 29860bp|The average similarity is about 99.8%
 SARS-CoV-2_20200417|100|4|about 27800bp|The average similarity is about 85%
@@ -78,10 +82,11 @@ pwd # get the PATH
 ./tpra -a PATH/ -r 16s_rRNA/raw_data/16s_rRNA_100_1.fasta -o 16s_rRNA_100_1_tpra.fasta 
 ```
 ## 💡Reminder
-1. Currently TPRA is only available for DNA/RNA. 
+1. Currently TPRA is **ONLY** available for DNA/RNA. 
 2. The application of TPRA assumes that the sequences' IDs within the MSAs are unique.
-(E.g. Due to the excessively long length of the sequence IDs in the original data set, ClustalW2 may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software).
-3. TPRA will remove any bad characters that are present in the input data.
+(E.g. Due to the excessively long length of the sequence IDs in the original data set, Clustal format(the default output format of ClustalW2/PCMA/POA/T-Coffee) may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software).
+3. TPRA will sort the sequences, but we recommend that the input sequences be in the same order as the original file.
+4. TPRA will remove any bad characters that are present in the input data.
 
 ## 🖥️Environment
 System|GCC version
@@ -90,5 +95,12 @@ OSX|clang 13.0.0
 Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
+## 🔖Citation
+
+
 ## 👋Contacts
-If you encounter any bugs while running our code, please email us at 👉[📩](zhai1xiao@gmail.com)
+The software tools are developed and maintained by 🧑‍🏫[ZOU's lab](http://lab.malab.cn/~zq/en/index.html).
+
+If you find any bug, welcome to contact us on the [issues page](https://github.com/malabz/TPRA/issues) or email us at 👉[📩](zhai1xiao@gmail.com).
+
+More tools and infomation can visit our [github](https://github.com/malabz).
