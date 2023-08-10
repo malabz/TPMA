@@ -74,7 +74,8 @@ static constexpr long long        MATCH =  1;
 static constexpr long long GAPEXTENSION = -2;
 static constexpr long long      GAPOPEN =  0;
 
-std::string raw_data, child_msa;
+std::string raw_data;
+std::vector<std::string> child_msa;
 std::string output;
 std::ostream *v1logger;
 std::ofstream f_matches;
@@ -169,27 +170,29 @@ static void preprocess()
 inline void display_help(const char* prog) {
 	printf("TPRA v1.0, by Yixiao Zhai, June 2023.\n");
 	printf("Usage: %s -a <folder_for_initial_alignments> -r <raw_data> -o <output> \n", prog);
-	printf("\t -a is used to specify the folder containing the initial alignments, the absolute path to the folder\n");
-	printf("\t -r is used to specify the raw data, a file in FASTA format\n");
-	printf("\t -o is used to specify the output file for TPRA result, a file in FASTA format\n");
+	printf("\t -a is used to specify the paths of all initial alignments to be merged\n");
+	printf("\t -r is used to specify the path of raw data, a file in FASTA format\n");
+	printf("\t -o is used to specify the output for TPRA result, a file in FASTA format\n");
 	printf("\t -h print help message\n");
 
 	printf("Example:\n\t");
-	printf("./tpra -a path_of_folder/ -r H.fasta -o H_ensemble.fasta\n\n");
+	printf("./tpra -a PATH/test_msa1.fa PATH/test_msa2.fa -r test.fa -o test_tpra.fa\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
 	v1logger = &std::cout;
 	bool is1 = false, is2 = false, is3 = false;
 	int oc;
-	while ((oc = getopt(argc, argv, "r:a:o:hf")) >= 0) {
+	while ((oc = getopt(argc, argv, "r:a:o:h")) >= 0) {
 		switch (oc) {
 			case 'r':
 				raw_data = optarg;
 				is1 = true;
 				break;
 			case 'a':
-				child_msa = optarg;
+                for (int i = optind - 1; i < argc && *argv[i] != '-'; ++i) {
+                    child_msa.push_back(argv[i]);
+                }
 				is2 = true;
 				break;
 			case 'o':
@@ -216,13 +219,6 @@ inline void get_pars(int argc, char* argv[]) {
 	f.open(raw_data);
 	if (f.fail()) {
 		fprintf(stderr, "Raw data file '%s' does not exist.\n", raw_data.c_str());
-		exit(1);
-	}
-	f.close();
-
-	f.open(child_msa);
-	if (f.fail()) {
-		fprintf(stderr, "The folder containing the initial alignments '%s' does not exist.\n", child_msa.c_str());
 		exit(1);
 	}
 	f.close();
@@ -341,15 +337,6 @@ static utils::Fasta read_from(std::string file_path)
     return fasta;
 }
 
-// static utils::Fasta read_from(char *const file_path)
-// {
-//     std::ifstream file(file_path);
-//     if (!file) exit(0);
-//     utils::Fasta fasta(file);
-//     file.close();
-//     return fasta;
-// }
-
 static void merge_core(std::vector<utils::Fasta> fasta_set, std::string result_name)
 {
     utils::Fasta       lhs = fasta_set[0];
@@ -393,29 +380,17 @@ static void merge_core(std::vector<utils::Fasta> fasta_set, std::string result_n
     }
 }
 
-static void refine(std::string raw_data_path, std::string path, std::string result_name)
+static void refine(std::string raw_data_path, std::vector<std::string> alignments_list, std::string result_name)
 {   
-    std::string file_set="test.txt";
-    std::ofstream fw(file_set, std::ofstream::out);
-    if(fw.is_open()){
-        for (const auto & entry : std::filesystem::directory_iterator(path)){
-            fw << entry.path().string() << "\n";
-        }
-        fw.close();
-    } else {
-        std::cerr << "Error opening file." << std::endl;
-    }
-    std::vector<utils::Fasta> fasta_set;
-
-    std::ifstream file(file_set);
-    if (!file) exit(0);
-
+    
     clock_t startTime, endTime, merge_endTime;
     startTime = clock();
 
+    std::vector<utils::Fasta> fasta_set;
     utils::Fasta raw_data = read_from(raw_data_path);
     std::cout <<  "Finished loading raw data..." << std::endl;
-    std::string each_line;
+    
+    
     int flag = 0;
     int processed = 0;
     std::regex regexp("[^a-zA-z]");
@@ -424,15 +399,23 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
     std::vector<std::pair<utils::Fasta,long long>> sp_scores;
     
     // Check data begin
-    while(std::getline(file, each_line))
+    for (int each_line=0; each_line < alignments_list.size(); each_line++)
     {
-        // Skip the blank lines
-        if(each_line=="") continue;
-
+        // Whether the initial alignment exists
+        std::ifstream f;
+        f.open(alignments_list[each_line]);
+        if (f.fail()) {
+            fprintf(stderr, "The initial alignments '%s' does not exist.\n", alignments_list[each_line].c_str());
+            exit(1);
+        }
+        f.close();
 
         flag = 0;
-        utils::Fasta fasta = read_from(each_line);
+        // initial alignment
+        utils::Fasta fasta = read_from(alignments_list[each_line]);
+
         std::vector<std::string> new_sequences;
+
         for(int i = 0; i < raw_data.identifications.size(); i++)
         {
             if(processed==0)
@@ -458,6 +441,11 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
                     new_sequences.push_back(fasta.sequences[index]);
                 }
             }
+            else
+            {
+                fprintf(stderr, "The initial alignments '%s' is different from the raw dataset.\n", alignments_list[each_line].c_str());
+                exit(1); 
+            }
         }
         fasta.sequences.assign(new_sequences.begin(), new_sequences.end());
         fasta.identifications.assign(raw_data.identifications.begin(), raw_data.identifications.end());
@@ -467,7 +455,6 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
         {
             long long sp_score = score(fasta, 0, fasta.sequences[0].size());
             sp_scores.push_back(std::make_pair(fasta, sp_score));
-            // fasta_set.push_back(fasta);
         }
         processed += 1;
     }
@@ -486,9 +473,6 @@ static void refine(std::string raw_data_path, std::string path, std::string resu
     
     merge_endTime = clock();
     std::cout << "Ensemble time: " <<(double)(merge_endTime - endTime)/CLOCKS_PER_SEC << " s." << std::endl;
-    if (std::remove(file_set.c_str())!=0) {
-        std::cerr << "Error deleting file." << std::endl;
-    }
     
 }
 
