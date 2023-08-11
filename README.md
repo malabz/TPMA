@@ -1,6 +1,6 @@
-# TPRA: A refinement tool for ensembling different multiple sequence alignment results
+# TPMA: a two pointer meta-alignment tool to ensemble different nucleic acid multiple sequence alignment results
 
-TPRA is a tool written in C++20 for combining and refining multiple MSA results using a two-pointer algorithm. It runs on Linux.
+TPMA is a tool written in C++20 for combining and refining multiple MSA results using a two-pointer algorithm. It runs on Linux.
 
 ## 🔨Installation and Usage
 
@@ -9,7 +9,7 @@ TPRA is a tool written in C++20 for combining and refining multiple MSA results 
 
 2.Download and install Anaconda. Download Anaconda for different systems [here](https://www.anaconda.com/products/distribution#Downloads). Instructional video of anaconda installation [1](https://www.youtube.com/watch?v=AshsPB3KT-E) or [2](http://lab.malab.cn/%7Etfr/Install_anaconda_in_Linux.mp4) (Copyright belongs to the original work).
 
-3.Install TPRA.
+3.Install TPMA.
 ```bash
 #1 Activate one of your conda environment
 conda activate base
@@ -17,11 +17,11 @@ conda activate base
 #2 Add channels to conda
 conda config --add channels malab
 
-#3 Install TPRA
-conda install -c malab tpra
+#3 Install TPMA
+conda install -c malab tpma
 
-#4 Test TPRA
-tpra -h
+#4 Test TPMA
+tpma -h
 ```
 
 ### 1.2 MacOS/Linux/WSL(Windows Subsystem for Linux ) - from the source code
@@ -29,29 +29,29 @@ tpra -h
 1. Download and Compile the source code. (Make sure your version of gcc >= 9.4.0 or clang >= 13.0.0)
 ```shell
 #1 Download
-git clone https://github.com/malabz/TPRA.git
+git clone https://github.com/malabz/TPMA.git
 
 #2 Open the folder
-cd TPRA
+cd TPMA
 
 #3 Compile
 make
 
-#4 Test TPRA
-./tpra -h
+#4 Test TPMA
+./tpma -h
 ```
 
 ### 2 Usage
 ```
-./tpra -a <folder_for_initial_alignments> -r <raw_data> -o <output>
-   -a is used to specify the folder containing the initial alignments, the path to the folder
-   -r is used to specify the raw data, a file in FASTA format
-   -o is used to specify the output file for TPRA result, a file in FASTA format
+./tpma -a <initial_alignments_list> -r <raw_data> -o <output>
+   -a is used to specify the paths of all initial alignments to be merged
+   -r is used to specify the path of raw data, a file in FASTA format
+   -o is used to specify the output for TPMA result, a file in FASTA format
    -h print help message
 ```
 
 ## 🔬Test dataset and the use case
-### 1. Information about the [test dataset](https://github.com/malabz/TPRA/tree/main/data)
+### 1. Information about the [test dataset](https://github.com/malabz/TPMA/tree/main/data)
 
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
@@ -69,7 +69,7 @@ SARS-CoV-2_20200417|100|4|about 27623bp|The average similarity is about 85%
 ### 2. The use case
 ```shell
 # Download data
-wget http://lab.malab.cn/~zyx/tools/TPRA/data/16s_rRNA.tar.gz
+wget http://lab.malab.cn/~zyx/tools/TPMA/data/16s_rRNA.tar.gz
 
 # Unzip data
 tar -zxvf 16s_rRNA.tar.gz
@@ -78,15 +78,15 @@ tar -zxvf 16s_rRNA.tar.gz
 cd 16s_rRNA/msa_results/16s_rRNA_100seq_rep1
 pwd # get the PATH
 
-# Run TPRA
-./tpra -a PATH/ -r 16s_rRNA/raw_data/16s_rRNA_100seq_rep1.fasta -o 16s_rRNA_100seq_rep1_tpra.fasta 
+# Run TPMA
+./tpma -a PATH/ -r 16s_rRNA/raw_data/16s_rRNA_100seq_rep1.fasta -o 16s_rRNA_100seq_rep1_tpma.fasta 
 ```
 ## 📍Reminder
-1. Currently TPRA is **ONLY** available for DNA/RNA. 
-2. The application of TPRA assumes that the sequences' IDs within the MSAs are unique.
-(E.g. Due to the excessively long length of the sequence IDs in the original data set, Clustal format(the default output format of ClustalW2/PCMA/POA/T-Coffee) may truncate the IDs, resulting in consistent IDs in the alignment output that TPRA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software).
-3. TPRA will sort the sequences, but we recommend that the input sequences be in the same order as the original file.
-4. TPRA will remove any bad characters that are present in the input data.
+1. Currently TPMA is **ONLY** available for DNA/RNA. 
+2. The application of TPMA assumes that the sequences' IDs within the MSAs are unique.
+(E.g. Due to the excessively long length of the sequence IDs in the original data set, Clustal format(the default output format of ClustalW2/PCMA/POA/T-Coffee) may truncate the IDs, resulting in consistent IDs in the alignment output that TPMA cannot process. If the IDs in the original data are too long, we suggest manually renumbering them before using MSA software).
+3. TPMA will sort the sequences, but we recommend that the input sequences be in the same order as the original file.
+4. TPMA will remove any bad characters that are present in the input data.
 
 ## 🖥️Environment
 System|GCC version
@@ -101,6 +101,6 @@ WSL|GCC 9.4.0
 ## 👋Contacts
 The software tools are developed and maintained by 🧑‍🏫[ZOU's lab](http://lab.malab.cn/~zq/en/index.html).
 
-If you find any bug, welcome to contact us on the [issues page](https://github.com/malabz/TPRA/issues) or email us at 👉[📩](zhai1xiao@gmail.com).
+If you find any bug, welcome to contact us on the [issues page](https://github.com/malabz/TPMA/issues) or email us at 👉[📩](zhai1xiao@gmail.com).
 
 More tools and infomation can visit our [github](https://github.com/malabz).

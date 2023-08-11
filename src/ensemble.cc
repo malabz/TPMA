@@ -168,15 +168,15 @@ static void preprocess()
 }
 
 inline void display_help(const char* prog) {
-	printf("TPRA v1.0, by Yixiao Zhai, June 2023.\n");
-	printf("Usage: %s -a <folder_for_initial_alignments> -r <raw_data> -o <output> \n", prog);
+	printf("TPMA v1.0, by Yixiao Zhai, June 2023.\n");
+	printf("Usage: %s -a <initial_alignments_list> -r <raw_data> -o <output> \n", prog);
 	printf("\t -a is used to specify the paths of all initial alignments to be merged\n");
 	printf("\t -r is used to specify the path of raw data, a file in FASTA format\n");
-	printf("\t -o is used to specify the output for TPRA result, a file in FASTA format\n");
+	printf("\t -o is used to specify the output for TPMA result, a file in FASTA format\n");
 	printf("\t -h print help message\n");
 
 	printf("Example:\n\t");
-	printf("./tpra -a PATH/test_msa1.fa PATH/test_msa2.fa -r test.fa -o test_tpra.fa\n\n");
+	printf("./tpma -a PATH/test_msa1.fa PATH/test_msa2.fa -r test.fa -o test_tpma.fa\n\n");
 }
 
 inline void get_pars(int argc, char* argv[]) {
@@ -203,7 +203,7 @@ inline void get_pars(int argc, char* argv[]) {
 				display_help(argv[0]);
 				exit(0);
 			case '?':
-				std::cerr << "Error parameters.\n Please run './TPRA -h'\n";
+				std::cerr << "Error parameters.\n Please run './tpma -h'\n";
 				exit(1);
 				break;
 		}
