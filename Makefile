@@ -3,7 +3,7 @@ CXX=g++
 CXXFLAGS=-std=c++20 -O2
 
 # Define targets and dependencies
-TARGET=tpra
+TARGET=tpma
 SRCS=src/ensemble.cc src/Fasta.cc
 OBJS=$(SRCS:.cc=.o)
 
