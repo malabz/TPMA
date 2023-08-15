@@ -1,12 +1,16 @@
+#include <chrono> // std::chrono 
+#include <ctime> // std::time_t / std::localtime 
+
 #include <vector>
 #include <numeric>
 #include <algorithm>
 #include <fstream>
 #include <cstring>
 #include <regex>
-#include <getopt.h>
+#include <unistd.h>
 #include <filesystem>
 #include "Fasta.hh"
+
 
 #if defined(_WIN32)
 #include <windows.h>
@@ -66,6 +70,21 @@ size_t getPeakRSS()
     /* Unknown OS ----------------------------------------------- */
     return (size_t)0L;            /* Unsupported. */
 #endif
+}
+
+void cout_cur_time()
+{
+    auto now = std::chrono::system_clock::now();
+    // Get milliseconds
+    uint64_t dis_millseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count()
+        - std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()).count() * 1000;
+    time_t tt = std::chrono::system_clock::to_time_t(now);
+    auto time_tm = localtime(&tt);
+    char strTime[25] = { 0 };
+    sprintf(strTime, "%d-%02d-%02d %02d:%02d:%02d | ", time_tm->tm_year + 1900,
+        time_tm->tm_mon + 1, time_tm->tm_mday, time_tm->tm_hour,
+        time_tm->tm_min, time_tm->tm_sec);
+    std::cout << strTime;
 }
 
 // Preset evaluation parameters 
@@ -190,9 +209,19 @@ inline void get_pars(int argc, char* argv[]) {
 				is1 = true;
 				break;
 			case 'a':
-                for (int i = optind - 1; i < argc && *argv[i] != '-'; ++i) {
-                    child_msa.push_back(argv[i]);
+                #ifdef __APPLE__
+                // macOS specific code
+                child_msa.push_back(optarg);
+                while (optind < argc && argv[optind][0] != '-') {
+                    child_msa.push_back(argv[optind]);
+                    optind++;
                 }
+                #elif defined(__linux__)
+                // Linux specific code
+                    for (int i = optind - 1; i < argc && *argv[i] != '-'; ++i) {
+                        child_msa.push_back(argv[i]);
+                    }
+                #endif
 				is2 = true;
 				break;
 			case 'o':
@@ -203,14 +232,24 @@ inline void get_pars(int argc, char* argv[]) {
 				display_help(argv[0]);
 				exit(0);
 			case '?':
-				std::cerr << "Error parameters.\n Please run './tpma -h'\n";
+				std::cerr << "ERROR: Error parameters.\n Please run './tpma -h'\n";
 				exit(1);
 				break;
 		}
 	}
 
-	if (!is1 || !is2 || !is3) {
-		fprintf(stderr, "Required parameters are not provided!!\n\n");
+	if (!is1) {
+		fprintf(stderr, "ERROR: Required parameter -r is not provided!!\n");
+		exit(1);
+	}
+
+    if (!is2) {
+		fprintf(stderr, "ERROR: Required parameter -a is not provided!!\n");
+		exit(1);
+	}
+
+    if (!is3) {
+		fprintf(stderr, "ERROR: Required parameter -o is not provided!!\n");
 		exit(1);
 	}
 	
@@ -218,14 +257,14 @@ inline void get_pars(int argc, char* argv[]) {
 
 	f.open(raw_data);
 	if (f.fail()) {
-		fprintf(stderr, "Raw data file '%s' does not exist.\n", raw_data.c_str());
+		fprintf(stderr, "ERROR: Raw data file '%s' does not exist.\n", raw_data.c_str());
 		exit(1);
 	}
 	f.close();
 
 	f_matches.open(output);
 	if (f_matches.fail()) {
-		fprintf(stderr, "The output file '%s' can not be created.\n", output.c_str());
+		fprintf(stderr, "ERROR: The output file '%s' can not be created.\n", output.c_str());
 		exit(1);
 	}
 	f_matches.close();
@@ -388,9 +427,13 @@ static void refine(std::string raw_data_path, std::vector<std::string> alignment
 
     std::vector<utils::Fasta> fasta_set;
     utils::Fasta raw_data = read_from(raw_data_path);
-    std::cout <<  "Finished loading raw data..." << std::endl;
+
+    cout_cur_time();
+    std::cout <<  "Finish loading raw dataset." << std::endl;
     
-    
+    cout_cur_time();
+    std::cout <<  "Start checking initial alignment." << std::endl;
+
     int flag = 0;
     int processed = 0;
     std::regex regexp("[^a-zA-z]");
@@ -405,7 +448,7 @@ static void refine(std::string raw_data_path, std::vector<std::string> alignment
         std::ifstream f;
         f.open(alignments_list[each_line]);
         if (f.fail()) {
-            fprintf(stderr, "The initial alignments '%s' does not exist.\n", alignments_list[each_line].c_str());
+            fprintf(stderr, "ERROR: The initial alignments '%s' does not exist.\n", alignments_list[each_line].c_str());
             exit(1);
         }
         f.close();
@@ -443,7 +486,7 @@ static void refine(std::string raw_data_path, std::vector<std::string> alignment
             }
             else
             {
-                fprintf(stderr, "The initial alignments '%s' is different from the raw dataset.\n", alignments_list[each_line].c_str());
+                fprintf(stderr, "ERROR: The initial alignments '%s' is different from the raw dataset.\n", alignments_list[each_line].c_str());
                 exit(1); 
             }
         }
@@ -466,13 +509,19 @@ static void refine(std::string raw_data_path, std::vector<std::string> alignment
     }
 
     endTime = clock();
-    std::cout << "Check data ... done!" << std::endl;
-    std::cout << "Check data time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
+    cout_cur_time();
+    std::cout << "Finish checking all initial alignments." << std::endl;
+    // std::cout << "# Checking time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
     
+    cout_cur_time();
+    std::cout << "Start combining initial alignments." << std::endl;
+
     merge_core(fasta_set, result_name);
     
-    merge_endTime = clock();
-    std::cout << "Ensemble time: " <<(double)(merge_endTime - endTime)/CLOCKS_PER_SEC << " s." << std::endl;
+    cout_cur_time();
+    std::cout << "Finish combining initial alignments." << std::endl; 
+    // merge_endTime = clock();
+    // std::cout << "# Ensemble time  : " <<(double)(merge_endTime - endTime)/CLOCKS_PER_SEC << " s." << std::endl;
     
 }
 
@@ -483,14 +532,31 @@ int main(int argc, char **argv)
         display_help(argv[0]);
 		return 1;
     }
+    // Save argv
+    std::vector<std::string> argv_copy;
+    for (int i = 0; i < argc; i++) {
+        argv_copy.push_back(argv[i]);
+    }
+
     get_pars(argc, argv);
 
-    clock_t startTime,endTime;
+    clock_t startTime, endTime;
     startTime = clock();
+
     refine(raw_data, child_msa, output);
+    
     endTime = clock();
-    std::cout << "Total time: " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
-    std::cout << "Memory usage: " << getPeakRSS() << " B." << std::endl;
-    std::cout << "Finish!" << std::endl;
+
+    cout_cur_time();
+    std::cout << "Done." << std::endl;
+
+    std::cout << "# Command line: ";
+    for (int i = 0; i < argc; ++i) {
+        std::cout << argv_copy[i] << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "# Total time  : " <<(double)(endTime - startTime)/CLOCKS_PER_SEC << " s." << std::endl;
+    std::cout << "# Memory usage: " << (double)getPeakRSS() / (1024 * 1024) << " MB." << std::endl;
+    std::cout << "# TPMA is available from https://github.com/malabz/TPMA" << std::endl;
     return 0;
 }

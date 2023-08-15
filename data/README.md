@@ -17,7 +17,7 @@
  - msa_results: the alignments were generated using ClustalW2, Dialign-TX, Kalign3, MAFFT, MUSCLE3, MUSCLE5, PCMA, POA, T-Coffee and WMSA2.
  - tpma_results: the alignments obtained by TPMA.
  - mcoffee_results: the alignments obtained by M-Coffee.
- - Download: [16s_rRNA.tar.gz](http://lab.malab.cn/soft/TPMA/data/hvs_ii.tar.gz)
+ - Download: [hvs_ii.tar.gz](http://lab.malab.cn/soft/TPMA/data/hvs_ii.tar.gz)
 
 ### 16s_rRNA.tar.gz
  - Data source: [16s_rRNA_small_test](http://lab.malab.cn/soft/halign/data/16ssmall.zip)
