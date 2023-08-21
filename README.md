@@ -1,4 +1,4 @@
-# TPMA: a two pointer meta-alignment tool to ensemble different nucleic acid multiple sequence alignment results
+# TPMA: a two pointers meta-alignment tool to ensemble different nucleic acid multiple sequence alignment results
 
 TPMA is a tool written in C++20 for combining and refining multiple MSA results using a two-pointer algorithm. It runs on Linux.
 
@@ -11,8 +11,9 @@ TPMA is a tool written in C++20 for combining and refining multiple MSA results 
 
 3.Install TPMA.
 ```bash
-#1 Activate one of your conda environment
-conda activate base
+#1 Create and activate a conda environment for TPMA
+conda create -n tpma_env
+conda activate tpma_env
 
 #2 Add channels to conda
 conda config --add channels malab
@@ -55,7 +56,7 @@ make
 
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
-mt1x|30|4|about 16568bp|The average similarity is about 99.7%
+mt genomes|30|4|about 16568bp|The average similarity is about 99.7%
 HVS-II|10|10|about 365bp|The average similarity is about 99%
 16S rRNA|100|8|about 1440bp|The average similarity is about 75%
 23S rRNA|64|10|about 3113bp|The average similarity is about 93%
