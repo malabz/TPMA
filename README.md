@@ -57,11 +57,11 @@ make
 Dataset|Sequences Num|Repeats Num|Avg Length|Similarity
 :---:|:---:|:---:|:---:|:---:
 mt genomes|30|4|about 16568bp|The average similarity is about 99.7%
-HVS-II|10|10|about 365bp|The average similarity is about 99%
-16S rRNA|100|8|about 1440bp|The average similarity is about 75%
-23S rRNA|64|10|about 3113bp|The average similarity is about 93%
+HVS-II|10|10|about 365bp|The average similarity is about 98.6%
+16S rRNA|100|8|about 1440bp|The average similarity is about 74.6%
+23S rRNA|64|10|about 3113bp|The average similarity is about 92.7%
 SARS-CoV-2_20200301|39|4|about 29858bp|The average similarity is about 99.8%
-SARS-CoV-2_20200417|100|4|about 27623bp|The average similarity is about 85%
+SARS-CoV-2_20200417|100|4|about 27623bp|The average similarity is about 85.3%
 16s simu|100|3|about 1550bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
 23s simu|100|3|about 3900bp|14 sets of data with different similarities (99%, 98%, 97%, 96%, 95%, 94%, 93%, 92%, 91%, 90%, 85%, 80%, 75%, 70%)
 CIPRES-128|255|10|about 1550bp|The average similarity is about 80%
