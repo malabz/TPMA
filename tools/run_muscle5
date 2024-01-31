@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+import os
+import argparse
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.description='please enter two parameters a and b ...'
+    parser.add_argument("-in", help="input", dest="argIn", type=str)
+    parser.add_argument("-out", help="output",  dest="argOut", type=str)
+    args = parser.parse_args()
+
+    os.system("muscle -super5 " + args.argIn + " -output " + args.argOut)
