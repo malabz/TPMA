@@ -1,4 +1,4 @@
-# Guide for M-Coffee Compatible with MUSCLE5
+# Guide for T-Coffee Compatible with MUSCLE5
 
 ## Prepare the script to call MUSCLE5
 1. Create a new folder named bin
@@ -14,11 +14,21 @@ $ touch run_muscle5
 ```shell
 $ chmod +x run_muscle5
 ```
-4. 
+4. Add the script to your PATH environment
+```shell
+# get your_path
+$ pwd
+# modify the PATH file
+$ vim ~/.bashrc
+# add the path
+export PATH=your_path:$PATH
+# update the PATH file
+$ source ~/.bashrc
 ```
 
-
-```c++
+## Modify the source code of T-Coffee to call the script that runs MUSCLE5
+1. Add the following code to the **produce_method_file** function of the **lib/util_lib/util_constraints_list.c** file
+```cpp
 	sprintf (list[n][0], "muscle5_msa");
 	sprintf (list[n][1], "%s", vtmpnam(NULL));
 	n++;if (method==NULL || strm (method, list[n-1][0])){fp=vfopen (list[n-1][1], "w");
@@ -34,5 +44,10 @@ $ chmod +x run_muscle5
 	fprintf ( fp, "PROGRAM    %s\n", MUSCLE_4_TCOFFEE);
 	vfclose (fp);}
 ```
+2. After saving the file, recompile T-Coffee
 
+## Instructions
+```shell
+$ t_coffee test.fa -method=muscle5_msa -outfile=test_mcoffee.aln
+```
  
