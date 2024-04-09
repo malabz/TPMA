@@ -98,7 +98,9 @@ Linux|GCC 9.4.0
 WSL|GCC 9.4.0
 
 ## 🔖Citation
+If you use this software, please cite:
 
+Zhai, Y., Chao, J., Wang, Y., Zhang, P., Tang, F., & Zou, Q. (2024). TPMA: A two pointers meta-alignment tool to ensemble different multiple nucleic acid sequence alignments. PLOS Computational Biology, 20(4), e1011988.
 
 ## 👋Contacts
 The software tools are developed and maintained by 🧑‍🏫[ZOU's lab](http://lab.malab.cn/~zq/en/index.html).
